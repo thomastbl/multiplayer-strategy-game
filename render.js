@@ -1,6 +1,9 @@
 const goLogin = document.querySelector(`[data-go="login"]`);
 const goSignup = document.querySelector(`[data-go="signup"]`);
 const goMenu = document.querySelectorAll(`[data-go="menu"]`);
+const signupButton = document.getElementById("signup-button");
+const usernameSU = document.getElementById("username_su");
+const passwordSU = document.getElementById("password_su");
 
 let currentView = "menu";
 
@@ -18,6 +21,18 @@ goLogin.addEventListener("click", () => {
 
 goSignup.addEventListener("click", () => {
   render("signup");
+});
+
+signupButton.addEventListener("click", async () => {
+  const response = await fetch("http://localhost:8080/signup", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      username: usernameSU.value,
+      password: passwordSU.value,
+    }),
+  });
+  console.log(response.message);
 });
 
 goMenu.forEach((button) => {
