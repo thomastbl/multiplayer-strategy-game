@@ -31,17 +31,6 @@ async function signup(username, password) {
   );
 }
 
-async function login(username, password) {
-  const result = await pool.query("SELECT * FROM users WHERE username = $1", [
-    username,
-  ]);
-  if (result.rows.length === 0) {
-    return false;
-  }
-  const match = await bcrypt.compare(password, result.rows[0].password_hash);
-  return match;
-}
-
 app.post("/signup", async (req, res) => {
   const { username, password } = req.body;
   try {
@@ -52,6 +41,17 @@ app.post("/signup", async (req, res) => {
     res.status(400).json({ error: "Nom d'utilisateur déjà pris" });
   }
 });
+
+async function login(username, password) {
+  const result = await pool.query("SELECT * FROM users WHERE username = $1", [
+    username,
+  ]);
+  if (result.rows.length === 0) {
+    return false;
+  }
+  const match = await bcrypt.compare(password, result.rows[0].password_hash);
+  return match;
+}
 
 app.post("/login", async (req, res) => {
   const { username, password } = req.body;
