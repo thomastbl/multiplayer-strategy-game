@@ -31,10 +31,41 @@ async function signup(username, password) {
   );
 }
 
+async function login(username, password) {
+  const result = await pool.query("SELECT * FROM users WHERE username = $1", [
+    username,
+  ]);
+  if (result.rows.length === 0) {
+    return false;
+  }
+  const match = await bcrypt.compare(password, result.rows[0].password_hash);
+  return match;
+}
+
 app.post("/signup", async (req, res) => {
   const { username, password } = req.body;
-  await signup(username, password);
-  res.json({ message: "Inscription réussie" });
+  try {
+    await signup(username, password);
+    res.json({ message: "Inscription réussie" });
+  } catch (error) {
+    console.error(error);
+    res.status(400).json({ error: "Nom d'utilisateur déjà pris" });
+  }
+});
+
+app.post("/login", async (req, res) => {
+  const { username, password } = req.body;
+  try {
+    const success = await login(username, password);
+    if (success) {
+      res.status(200).json({ connection: "authorized" });
+    } else {
+      res.status(401).json({ connection: "unauthorized" });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "server error" });
+  }
 });
 
 app.listen(port, () => {

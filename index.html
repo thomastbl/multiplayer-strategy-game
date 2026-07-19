@@ -34,22 +34,12 @@
           <polyline points="12 19 5 12 12 5" />
         </svg>
       </button>
-      <form action="http://localhost:8080/" method="get">
-        <label for="first_name">Prénom</label>
-        <input
-          type="text"
-          name="first_name"
-          id="first_name"
-          placeholder="Jean"
-        />
-        <label for="last_name">Nom</label>
-        <input
-          type="text"
-          name="last_name"
-          id="last_name"
-          placeholder="Dupont"
-        />
-        <button type="button">Se connecter</button>
+      <form action="http://localhost:8080/" method="post">
+        <label for="username_lg">Nom d'utilisateur</label>
+        <input type="text" name="username" id="username_lg" />
+        <label for="password_lg">Mot de passe</label>
+        <input type="password" name="password" id="password_lg" />
+        <button type="button" id="login-button">Se connecter</button>
       </form>
     </div>
     <div class="menu-card" data-view="signup" hidden>
