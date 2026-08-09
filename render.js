@@ -48,10 +48,11 @@ loginButton.addEventListener("click", async () => {
       password: passwordLG.value,
     }),
   });
+  const data = await response.json();
   if (response.ok) {
-    console.log("connecté");
+    console.log(data.connection);
   } else {
-    console.log("refusé");
+    console.log(data.connection);
   }
 });
 

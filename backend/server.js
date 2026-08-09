@@ -2,6 +2,8 @@ const express = require("express");
 const { Pool } = require("pg");
 const bcrypt = require("bcrypt");
 const cors = require("cors");
+const jwt = require("jsonwebtoken");
+
 const app = express();
 const port = 8080;
 process.loadEnvFile();
@@ -35,10 +37,10 @@ app.post("/signup", async (req, res) => {
   const { username, password } = req.body;
   try {
     await signup(username, password);
-    res.json({ message: "Inscription réussie" });
+    res.status(200).json({ message: "Inscription réussie" });
   } catch (error) {
     console.error(error);
-    res.status(400).json({ error: "Nom d'utilisateur déjà pris" });
+    res.status(401).json({ error: "Nom d'utilisateur déjà pris" });
   }
 });
 
@@ -47,20 +49,25 @@ async function login(username, password) {
     username,
   ]);
   if (result.rows.length === 0) {
-    return false;
+    return { match: false };
   }
   const match = await bcrypt.compare(password, result.rows[0].password_hash);
-  return match;
+  return { match: match, id: result.rows[0].id };
 }
 
 app.post("/login", async (req, res) => {
   const { username, password } = req.body;
   try {
     const success = await login(username, password);
-    if (success) {
-      res.status(200).json({ connection: "authorized" });
+    if (success.match) {
+      const token = jwt.sign({ user_id: success.id }, process.env.JWT_KEY, {
+        expiresIn: "12h",
+      });
+      res
+        .status(200)
+        .json({ connection: "connection authorized", token: token });
     } else {
-      res.status(401).json({ connection: "unauthorized" });
+      res.status(401).json({ connection: "connection unauthorized" });
     }
   } catch (error) {
     console.error(error);
