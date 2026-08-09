@@ -4,7 +4,7 @@
 
 À l'ère de l'intelligence artificielle, il me semble essentiel d'être en phase avec son temps. J'utilise donc ces outils au quotidien, sous leurs formes les plus utiles, en cherchant à rester à jour avec les technologies qui transforment ce domaine, l'IA dans sa forme globale étant selon moi un outil exceptionnel et une véritable révolution.
 
-Il est donc important pour moi de préciser les choses ; aucune IA n'a été utilisée pour générer du code. Cela vaut pour les projets passés et ceux à venir tout au long de mon apprentissage. L'intégralité du code présent dans ce dépôt a été écrite par moi même, ligne par ligne. Mon usage de l'IA est strictement pédagogique. Je m'en suis servi pour me faire expliquer des concepts, guider ma compréhension et me pousser à réfléchir, jamais pour produire des solutions toutes faites.
+**Il est donc important pour moi de préciser les choses ; aucune IA n'a été utilisée pour générer du code. Cela vaut pour les projets passés et ceux à venir tout au long de mon apprentissage.** L'intégralité du code présent dans ce dépôt a été écrite par moi même, ligne par ligne. Mon usage de l'IA est strictement pédagogique. Je m'en suis servi pour me faire expliquer des concepts, guider ma compréhension et me pousser à réfléchir, jamais pour produire des solutions toutes faites.
 
 Et ce choix est délibéré. Dans une démarche d'apprentissage du développement, déléguer l'écriture du code serait contreproductif et m'empêcherait précisément de comprendre, de progresser et d'acquérir les réflexes du métier de développeur. L'IA m'aide à comprendre et à apprendre, pas à sauter les étapes.
 
