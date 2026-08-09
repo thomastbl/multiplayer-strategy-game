@@ -51,6 +51,7 @@ loginButton.addEventListener("click", async () => {
   const data = await response.json();
   if (response.ok) {
     console.log(data.connection);
+    localStorage.setItem("token", data.token);
   } else {
     console.log(data.connection);
   }
