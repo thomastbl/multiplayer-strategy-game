@@ -36,7 +36,11 @@ signupButton.addEventListener("click", async () => {
     }),
   });
   const data = await response.json();
-  console.log(data.error);
+  if (response.ok) {
+    console.log(data.message);
+  } else {
+    console.log(data.error);
+  }
 });
 
 loginButton.addEventListener("click", async () => {
