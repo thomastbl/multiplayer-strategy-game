@@ -16,6 +16,7 @@
     <div class="menu-card" data-view="menu">
       <button data-go="login">Se connecter</button>
       <button data-go="signup">S'inscrire</button>
+      <button data-go="gameMenu">Entrer dans le jeu</button>
     </div>
     <div class="menu-card" data-view="login" hidden>
       <button data-go="menu" class="back-button">
@@ -66,6 +67,21 @@
         <input type="password" name="password" id="password_su" />
         <button type="button" id="signup-button">S'inscrire</button>
       </form>
+    </div>
+    <div class="gameMenu column" data-view="gameMenu" hidden>
+      <div class="header"></div>
+      <div class="body">
+        <div class="left-side column">
+          <div class="player-card"></div>
+          <div class="friends-card"></div>
+        </div>
+        <div class="middle-side column">
+          <div class="lobbies-card"></div>
+        </div>
+        <div class="right-side column">
+          <div class="ranking-card"></div>
+        </div>
+      </div>
     </div>
   </body>
 </html>
