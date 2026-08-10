@@ -16,6 +16,8 @@ const pool = new Pool({
   password: process.env.DB_PASSWORD,
 });
 
+// --------- Middlewares
+
 // Traduis une requête url-encoded en objet
 app.use(express.urlencoded());
 
@@ -25,6 +27,11 @@ app.use(express.json());
 // Autorise le client à recevoir la réponse du serveur
 app.use(cors({ origin: "http://localhost:5500" }));
 
+// Vérifie l'authenticité du token de connexion
+function authenticateToken(token) {}
+
+// --------- Fonctions métiers
+
 async function signup(username, password) {
   const password_hash = await bcrypt.hash(password, 10);
   await pool.query(
@@ -32,17 +39,6 @@ async function signup(username, password) {
     [username, password_hash],
   );
 }
-
-app.post("/signup", async (req, res) => {
-  const { username, password } = req.body;
-  try {
-    await signup(username, password);
-    res.status(200).json({ message: "Inscription réussie" });
-  } catch (error) {
-    console.error(error);
-    res.status(401).json({ error: "Nom d'utilisateur déjà pris" });
-  }
-});
 
 async function login(username, password) {
   const result = await pool.query("SELECT * FROM users WHERE username = $1", [
@@ -54,6 +50,19 @@ async function login(username, password) {
   const match = await bcrypt.compare(password, result.rows[0].password_hash);
   return { match: match, id: result.rows[0].id };
 }
+
+// --------- Routes
+
+app.post("/signup", async (req, res) => {
+  const { username, password } = req.body;
+  try {
+    await signup(username, password);
+    res.status(200).json({ message: "Inscription réussie" });
+  } catch (error) {
+    console.error(error);
+    res.status(401).json({ error: "Nom d'utilisateur déjà pris" });
+  }
+});
 
 app.post("/login", async (req, res) => {
   const { username, password } = req.body;
@@ -74,6 +83,8 @@ app.post("/login", async (req, res) => {
     res.status(500).json({ error: "server error" });
   }
 });
+
+// ---------
 
 app.listen(port, () => {
   console.log(`App listening on port ${port}`);

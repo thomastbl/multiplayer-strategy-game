@@ -1,5 +1,6 @@
 const goLogin = document.querySelector(`[data-go="login"]`);
 const goSignup = document.querySelector(`[data-go="signup"]`);
+const goGameMenu = document.querySelector(`[data-go="gameMenu"]`);
 const goMenu = document.querySelectorAll(`[data-go="menu"]`);
 const signupButton = document.getElementById("signup-button");
 const loginButton = document.getElementById("login-button");
@@ -18,6 +19,8 @@ export function render(dataview) {
   document.querySelector(`[data-view="${dataview}"]`).hidden = false;
 }
 
+// --------- Changement de vues
+
 goLogin.addEventListener("click", () => {
   render("login");
 });
@@ -25,6 +28,17 @@ goLogin.addEventListener("click", () => {
 goSignup.addEventListener("click", () => {
   render("signup");
 });
+
+goGameMenu.addEventListener("click", () => {
+  const token = localStorage.getItem("token");
+  if (token) {
+    render("gameMenu");
+  } else {
+    render("login");
+  }
+});
+
+// --------- Events listeners
 
 signupButton.addEventListener("click", async () => {
   const response = await fetch("http://localhost:8080/signup", {
