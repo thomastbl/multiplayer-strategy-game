@@ -3,7 +3,6 @@
 *::after {
   box-sizing: border-box;
   margin: 0px;
-  outline: 1px solid rgb(94, 255, 0);
 }
 
 body {
@@ -46,6 +45,10 @@ body {
 .gameMenu {
   width: 100%;
   min-height: 100vh;
+}
+
+.gameMenu * {
+  outline: 1px solid rgb(94, 255, 0);
 }
 
 .gameMenu div {
