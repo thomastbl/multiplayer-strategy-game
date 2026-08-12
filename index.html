@@ -70,14 +70,18 @@
     </div>
     <div class="gameMenu column" data-view="gameMenu" hidden>
       <div class="header row">
-        <div class="row">
-          <div>LOGO</div>
-          <div>PLAY</div>
-          <div>MESSAGES</div>
+        <div class="row space-between">
+          <div class="header-btn">PLAY</div>
+          <div class="header-btn">MESSAGES</div>
         </div>
         <div class="row">
-          <div>PROFILE</div>
-          <div>LOG OUT</div>
+          <div class="logo">
+            <img src="./assets/img/tears_of_regret_b_t.svg" alt="game_logo" />
+          </div>
+        </div>
+        <div class="row space-between">
+          <div class="header-btn">PROFILE</div>
+          <div class="header-btn">LOG OUT</div>
         </div>
       </div>
       <div class="body row">
@@ -86,7 +90,22 @@
           <div class="friends-card">FRIENDS LIST</div>
         </div>
         <div class="middle-side column">
-          <div class="lobby-card">LOBBY</div>
+          <div class="lobby-card">
+            <table>
+              <caption>
+                Serveurs ouverts
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">Nom de la partie</th>
+                  <th scope="col">Hôte</th>
+                  <th scope="col">Carte</th>
+                  <th scope="col">Nombre de joueurs</th>
+                  <th scope="col">Statut de la partie</th>
+                </tr>
+              </thead>
+            </table>
+          </div>
         </div>
         <div class="right-side column">
           <div class="ranking-card">RANKINGS</div>
