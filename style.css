@@ -10,10 +10,10 @@ body {
   min-height: 100vh;
 
   /* background */
-  background-color: #050910;
+  background-color: #151717;
   background-image:
-    linear-gradient(to right, rgba(29, 41, 74, 0.6) 0.5px, transparent 0.5px),
-    linear-gradient(to bottom, rgba(29, 41, 74, 0.6) 0.5px, transparent 0.5px);
+    linear-gradient(to right, #202226 0.5px, transparent 0.5px),
+    linear-gradient(to bottom, #2a2a2f 0.5px, transparent 0.5px);
   background-size: 40px 40px;
   background-repeat: repeat;
 
@@ -38,59 +38,47 @@ body {
   width: 320px;
 }
 
-.body {
-  flex-basis: 100%;
-}
-
 .gameMenu {
-  flex-basis: 100%;
-  height: 100vh;
   background-color: #151717;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr;
+  width: 100%;
+  height: 100vh;
 }
 
 .gameMenu * {
-  outline: 1px solid rgb(94, 255, 0);
+  outline: 1px solid #5a5a5a;
 }
 
 .header {
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 }
 
-.logo img {
-  height: 200px;
-  width: auto;
-}
-
-.row {
-  display: flex;
-  flex-direction: row;
-}
-
-.column {
-  display: flex;
-  flex-direction: column;
+.main-menu {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
 }
 
 .left-side {
-  flex: 1;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
 }
 .middle-side {
-  flex: 2;
 }
 .right-side {
-  flex: 1;
+  display: grid;
+  grid-template-rows: 1fr;
 }
 
 .player-card {
-  flex: 1;
 }
 
 .friends-card {
-  flex: 1;
 }
 
 .lobby-card {
-  flex: 1;
 }
 
 th {
@@ -98,12 +86,14 @@ th {
 }
 
 .ranking-card {
-  height: 50vh;
-  flex: 1;
 }
 
-.space-between {
-  justify-content: space-around;
-  flex-basis: 15vw;
-  align-items: center;
+.padding {
+  padding: 1rem;
+}
+
+.logo {
+  height: 200px;
+  display: flex;
+  justify-content: center;
 }
