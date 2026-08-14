@@ -46,10 +46,14 @@ goGameMenu.addEventListener("click", () => {
 logout.addEventListener("click", () => {
   localStorage.removeItem("token");
   enterGameButton.hidden = true;
+  goLogin.hidden = false;
+  goSignup.hidden = false;
 });
 
 backButtonFromGameMenu.addEventListener("click", () => {
   enterGameButton.hidden = false;
+  goLogin.hidden = true;
+  goSignup.hidden = true;
 });
 
 signupButton.addEventListener("click", async () => {
