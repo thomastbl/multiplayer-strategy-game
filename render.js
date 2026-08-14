@@ -9,6 +9,8 @@ const passwordSU = document.getElementById("password_su");
 const usernameLG = document.getElementById("username_lg");
 const passwordLG = document.getElementById("password_lg");
 const logout = document.getElementById("logout");
+const backButtonFromGameMenu = document.getElementById("menu-game-back");
+const enterGameButton = document.getElementById("enter-game-button");
 
 let currentView = "menu";
 
@@ -43,6 +45,11 @@ goGameMenu.addEventListener("click", () => {
 
 logout.addEventListener("click", () => {
   localStorage.removeItem("token");
+  enterGameButton.hidden = true;
+});
+
+backButtonFromGameMenu.addEventListener("click", () => {
+  enterGameButton.hidden = false;
 });
 
 signupButton.addEventListener("click", async () => {
@@ -83,6 +90,7 @@ loginButton.addEventListener("click", async () => {
   if (response.ok) {
     console.log(data.connection);
     localStorage.setItem("token", data.token);
+    render("gameMenu");
   } else {
     console.log(data.connection);
   }

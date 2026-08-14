@@ -16,7 +16,9 @@
     <div class="menu-card" data-view="menu">
       <button data-go="login">Se connecter</button>
       <button data-go="signup">S'inscrire</button>
-      <button data-go="gameMenu">Entrer dans le jeu</button>
+      <button data-go="gameMenu" id="enter-game-button" hidden>
+        Entrer dans le jeu
+      </button>
     </div>
     <div class="menu-card" data-view="login" hidden>
       <button data-go="menu" class="back-button">
@@ -73,7 +75,7 @@
         <div class="header-left">
           <div>
             <div class="padding">
-              <button data-go="menu" class="back-button">
+              <button data-go="menu" class="back-button" id="menu-game-back">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
