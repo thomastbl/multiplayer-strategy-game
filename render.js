@@ -8,6 +8,7 @@ const usernameSU = document.getElementById("username_su");
 const passwordSU = document.getElementById("password_su");
 const usernameLG = document.getElementById("username_lg");
 const passwordLG = document.getElementById("password_lg");
+const logout = document.getElementById("logout");
 
 let currentView = "menu";
 
@@ -39,6 +40,10 @@ goGameMenu.addEventListener("click", () => {
 });
 
 // --------- Events listeners
+
+logout.addEventListener("click", () => {
+  localStorage.removeItem("token");
+});
 
 signupButton.addEventListener("click", async () => {
   const response = await fetch("http://localhost:8080/signup", {
