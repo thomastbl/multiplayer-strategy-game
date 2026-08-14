@@ -1,111 +1,111 @@
-# 🌍 Multiplayer Strategy Game
+# 🌍 Tears of Regret | A Multiplayer Strategy Game
 
-✍️ **Une note sur l'usage de l'IA**
+✍️ **A note on AI usage**
 
-**Aucune IA n'a été utilisée pour générer du code. Cela vaut pour les projets passés et ceux à venir tout au long de mon apprentissage.** Mon usage de l'IA est strictement pédagogique. Je m'en sers pour comprendre des concepts et me pousser à réfléchir, jamais pour produire des solutions toutes faites.
-
----
-
-## Un jeu de stratégie multijoueur, jouable dans le navigateur, inspiré de jeux comme _OpenFront.io_.
-
-Ce projet est développé en autodidacte dans le cadre de ma montée en compétences full-stack. Il me sert de fil rouge pour apprendre le développement web de bout en bout : du rendu côté client jusqu'à la persistance en base de données, en passant par une API et un système d'authentification complet.
-
---
-
-## 🚧 État du projet
-
-**En développement actif.** Le socle technique est en place puisque le projet dispose d'un front interactif, d'un back-end structuré avec une API, et d'un système d'authentification fonctionnel connecté à une base de données PostgreSQL. La logique de jeu constitue la prochaine grande étape.
+**No AI was used to generate any code. This holds for past projects and for all those to come throughout my learning.** My use of AI is strictly educational: I rely on it to understand concepts and push myself to think, never to produce ready-made solutions.
 
 ---
 
-## ✅ Fonctionnalités actuelles
+## A browser-based multiplayer strategy game, inspired by titles such as _OpenFront.io_.
 
-**Authentification**
+This project is developed self-taught as part of my move toward full-stack development. It acts as a common thread for learning web development end to end: from client-side rendering to database persistence, by way of an API and a complete authentication system.
 
-- Inscription (`/signup`) avec hachage des mots de passe via **bcrypt**
-- Connexion (`/login`) avec vérification sécurisée et émission d'un **JSON Web Token (JWT)**
-- Stockage du jeton côté client pour maintenir la session
-- Requêtes SQL **paramétrées** pour se protéger des injections SQL
-- Gestion des erreurs et codes de statut HTTP appropriés
+---
+
+## 🚧 Project status
+
+**Under active development.** The technical foundation is in place: the project has an interactive front end, a structured back end with an API, and a working authentication system connected to a PostgreSQL database. Game logic is the next major milestone.
+
+---
+
+## ✅ Current features
+
+**Authentication**
+
+- Sign-up (`/signup`) with password hashing via **bcrypt**
+- Login (`/login`) with secure verification and issuance of a **JSON Web Token (JWT)**
+- Client-side token storage to maintain the session
+- **Parameterized** SQL queries to guard against SQL injection
+- Error handling and appropriate HTTP status codes
 
 **Interface**
 
-- Navigation entre les vues (menu, connexion, inscription).
-- Communication client à serveur en **JSON** via l'API`fetch`
-- Formulaires connectés au back-end
+- Navigation between views (menu, login, sign-up).
+- Client-to-server communication in **JSON** through the `fetch` API
+- Forms wired to the back end
 
-**Back-end & données**
+**Back end & data**
 
-- API construite avec **Express**
-- Connexion à **PostgreSQL** via une pool de connexions
-- Configuration des secrets par variables d'environnement (`.env`)
-- Gestion du **CORS** pour les échanges cross-origin
+- API built with **Express**
+- Connection to **PostgreSQL** through a connection pool
+- Secrets configured through environment variables (`.env`)
+- **CORS** handling for cross-origin exchanges
 
 ---
 
-## 🛠 Stack technique
+## 🛠 Tech stack
 
-### Front-end
+### Front end
 
-- **HTML / CSS / JavaScript vanilla** (ES Modules)
-- **Pico.css** — framework CSS minimaliste
-- **PixiJS** — rendu 2D (prévu pour l'affichage de la carte de jeu)
+- **HTML / CSS / vanilla JavaScript** (ES Modules)
+- **Pico.css** — minimalist CSS framework
+- **PixiJS** — 2D rendering (intended for displaying the game map)
 
-### Back-end
+### Back end
 
 - **Node.js** + **Express**
-- **node-postgres (pg)** — driver PostgreSQL
-- **bcrypt** — pour le hash des mots de passe
-- **jsonwebtoken** — authentification par jetons
-- **cors** - gestion des origines croisées
+- **node-postgres (pg)** — PostgreSQL driver
+- **bcrypt** — password hashing
+- **jsonwebtoken** — token-based authentication
+- **cors** - cross-origin handling
 
-### Base de données
+### Database
 
 - **PostgreSQL**
 
 ---
 
-Le projet sépare le **client** du **serveur** :
+The project keeps the **client** and the **server** separate:
 
-- le **client** ne communique jamais directement avec la base de données ;
-- il envoie des requêtes à l'**API** (serveur Express) ;
-- le **serveur** est seul à dialoguer avec PostgreSQL.
+- the **client** never communicates directly with the database;
+- it sends its requests to the **API** (Express server);
+- the **server** is the only party that talks to PostgreSQL.
 
 ---
 
 ### 🎯 MVP
 
-L'ambition immédiate est un premier jeu jouable et démontrable :
+The immediate ambition is a first playable, demonstrable game:
 
-- [x] Système d'authentification (inscription / connexion)
-- [ ] Protection des routes par un middleware JWT
-- [ ] Création et gestion de salons de jeu
-- [ ] Affichage de la carte interactive avec PixiJS
-- [ ] Logique du jeu (initialisation de la partie, création d'unités, déplacements ...)
-- [ ] Synchronisation de l'état de partie entre joueurs
+- [x] Authentication system (sign-up / login)
+- [ ] Route protection through a JWT middleware
+- [ ] Creation and management of game lobbies
+- [ ] Interactive map rendering with PixiJS
+- [ ] Game logic (match initialization, unit creation, movement, etc.)
+- [ ] Game-state synchronization between players
 
-### 🚀 Vision à long terme
+### 🚀 Long-term vision
 
-À terme, le projet vise une architecture de jeu multijoueur :
+Ultimately, the project aims at a full multiplayer game architecture:
 
-- Détection de désynchronisation
-- Communication temps réel
-- IA de jeu fondée sur des fonctions de score d'utilité et s'exécutant comme un joueur virtuel
-
----
-
-## 📚 Notes d'apprentissage
-
-Ce projet est avant tout un support d'apprentissage. Il m'a permis d'aborder en profondeur, entre autres :
-
-- le modèle **client-serveur** et le protocole **HTTP** (méthodes, statuts, headers, body) ;
-- la construction d'une **API** avec Express (routing, middlewares) ;
-- la **sérialisation / désérialisation** des données (JSON) au cœur des échanges réseau ;
-- la sécurité web avec le **hachage** de mots de passe, **requêtes paramétrées**, **CORS**, **variables d'environnement**, authentification par **JWT** ;
-- le **modèle relationnel** et le langage **SQL** (schéma, contraintes, CRUD) ;
-- la connexion d'une application Node.js à **PostgreSQL** ;
-- la gestion de l'**asynchronisme** en JavaScript (`async` / `await`, `try` / `catch`).
+- Desynchronization detection
+- Real-time communication
+- Game AI based on utility score functions, running as a virtual player
 
 ---
 
-_Ce projet est développé par [thomastbl](https://github.com/thomastbl)._
+## 📚 Learning notes
+
+This project is first and foremost a learning vehicle. Among other things, it has allowed me to explore in depth:
+
+- the **client-server** model and the **HTTP** protocol (methods, status codes, headers, body);
+- building an **API** with Express (routing, middlewares);
+- data **serialization / deserialization** (JSON) at the heart of network exchanges;
+- web security: password **hashing**, **parameterized queries**, **CORS**, **environment variables**, **JWT** authentication;
+- the **relational model** and the **SQL** language (schema, constraints, CRUD);
+- connecting a Node.js application to **PostgreSQL**;
+- handling **asynchronous** JavaScript (`async` / `await`, `try` / `catch`).
+
+---
+
+_This project is developed by [thomastbl](https://github.com/thomastbl)._
