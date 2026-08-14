@@ -54,6 +54,10 @@ signupButton.addEventListener("click", async () => {
       password: passwordSU.value,
     }),
   });
+
+  usernameSU.value = "";
+  passwordSU.value = "";
+
   const data = await response.json();
   if (response.ok) {
     console.log(data.message);
@@ -71,6 +75,10 @@ loginButton.addEventListener("click", async () => {
       password: passwordLG.value,
     }),
   });
+
+  usernameLG.value = "";
+  passwordLG.value = "";
+
   const data = await response.json();
   if (response.ok) {
     console.log(data.connection);
