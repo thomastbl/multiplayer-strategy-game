@@ -70,13 +70,43 @@
     </div>
     <div class="gameMenu" data-view="gameMenu" hidden>
       <div class="header">
-        <div class="padding">PLAY</div>
-        <div class="padding">MESSAGES</div>
+        <div class="header-left">
+          <div>
+            <div class="padding">
+              <button data-go="menu" class="back-button">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <line x1="19" y1="12" x2="5" y2="12" />
+                  <polyline points="12 19 5 12 12 5" />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="right-side-header-left">
+            <div class="padding">PLAY</div>
+            <div class="padding">MESSAGES</div>
+          </div>
+        </div>
+
         <div class="logo">
           <img src="./assets/img/tears_of_regret_b_t.svg" alt="game_logo" />
         </div>
-        <div class="padding">PROFILE</div>
-        <div class="padding">LOG OUT</div>
+
+        <div class="header-right">
+          <div class="padding left-side-header-right">PROFILE</div>
+          <div class="padding">
+            <button data-go="menu" class="back-button">Log Out</button>
+          </div>
+        </div>
       </div>
       <div class="main-menu">
         <div class="left-side">
