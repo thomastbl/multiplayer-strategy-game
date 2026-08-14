@@ -66,7 +66,7 @@ async function login(username, password) {
 
 // --------- Routes
 
-app.post("/signup", authenticateToken, async (req, res) => {
+app.post("/signup", async (req, res) => {
   const { username, password } = req.body;
   try {
     await signup(username, password);
