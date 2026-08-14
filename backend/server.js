@@ -28,7 +28,20 @@ app.use(express.json());
 app.use(cors({ origin: "http://localhost:5500" }));
 
 // Vérifie l'authenticité du token de connexion
-function authenticateToken(token) {}
+function authenticateToken(req, res, next) {
+  try {
+    const authorization = req.headers.authorization;
+    const token = authorization.split(" ")[1];
+    const verifiedToken = jwt.verify(token, process.env.JWT_KEY);
+    console.log("The token has been validated");
+    next();
+  } catch (error) {
+    console.log(`error: ${error}, access unauthorized`);
+    res.status(401).json({
+      error: "Token unvalidated",
+    });
+  }
+}
 
 // --------- Fonctions métiers
 
@@ -53,7 +66,7 @@ async function login(username, password) {
 
 // --------- Routes
 
-app.post("/signup", async (req, res) => {
+app.post("/signup", authenticateToken, async (req, res) => {
   const { username, password } = req.body;
   try {
     await signup(username, password);
