@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "http-server": "node --watch --env-file=.env server.js",
-    "wss": "node --watch --env-file=.env websocket.js"
+    "http-server": "node --watch --env-file=.env http-server.js",
+    "wss": "node --watch --env-file=.env wss-server.js"
   },
   "keywords": [],
   "author": "",
