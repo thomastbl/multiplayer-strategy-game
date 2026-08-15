@@ -15,11 +15,15 @@ const enterGameButton = document.getElementById("enter-game-button");
 let currentView = "menu";
 
 export function render(dataview) {
-  document
-    .querySelectorAll("[data-view]")
-    .forEach((element) => (element.hidden = true));
+  const update = () => {
+    document.querySelectorAll("[data-view]").forEach((element) => {
+      element.hidden = true;
+    });
+    document.querySelector(`[data-view="${dataview}"]`).hidden = false;
+  };
 
-  document.querySelector(`[data-view="${dataview}"]`).hidden = false;
+  if (!document.startViewTransition) return update();
+  document.startViewTransition(update);
 }
 
 // --------- Changement de vues

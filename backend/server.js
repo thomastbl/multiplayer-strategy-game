@@ -38,7 +38,7 @@ function authenticateToken(req, res, next) {
   } catch (error) {
     console.log(`error: ${error}, access unauthorized`);
     res.status(401).json({
-      error: "Token unvalidated",
+      error: "Token not valid",
     });
   }
 }
