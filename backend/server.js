@@ -70,10 +70,10 @@ app.post("/signup", async (req, res) => {
   const { username, password } = req.body;
   try {
     await signup(username, password);
-    res.status(200).json({ message: "Inscription réussie" });
+    res.status(200).json({ message: "Successful sign-up" });
   } catch (error) {
     console.error(error);
-    res.status(401).json({ error: "Nom d'utilisateur déjà pris" });
+    res.status(401).json({ error: "Username already taken" });
   }
 });
 
@@ -87,13 +87,13 @@ app.post("/login", async (req, res) => {
       });
       res
         .status(200)
-        .json({ connection: "connection authorized", token: token });
+        .json({ connection: "Connection authorized", token: token });
     } else {
-      res.status(401).json({ connection: "connection unauthorized" });
+      res.status(401).json({ connection: "Invalid username or password" });
     }
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "server error" });
+    res.status(500).json({ error: "Server error" });
   }
 });
 

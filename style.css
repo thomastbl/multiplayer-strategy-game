@@ -55,6 +55,22 @@
   --margin-lg: 18px;
 }
 
+.success-message {
+  padding: 10px;
+  color: var(--theme-surface-a10);
+  background-color: var(--theme-success-a0);
+  margin: 0;
+  border-radius: var(--radius-sm);
+}
+
+.failure-message {
+  padding: 10px;
+  color: var(--theme-surface-a10);
+  background-color: var(--theme-danger-a0);
+  margin: 0;
+  border-radius: var(--radius-sm);
+}
+
 body {
   /* viewport */
   min-height: 100vh;

@@ -11,6 +11,8 @@ const passwordLG = document.getElementById("password_lg");
 const logout = document.getElementById("logout");
 const backButtonFromGameMenu = document.getElementById("menu-game-back");
 const enterGameButton = document.getElementById("enter-game-button");
+const signupStatus = document.getElementById("signup-status");
+const loginStatus = document.getElementById("login-status");
 
 let currentView = "menu";
 
@@ -29,10 +31,14 @@ export function render(dataview) {
 // --------- Changement de vues
 
 goLogin.addEventListener("click", () => {
+  loginStatus.textContent = "";
+  loginStatus.className = "";
   render("login");
 });
 
 goSignup.addEventListener("click", () => {
+  signupStatus.textContent = "";
+  signupStatus.className = "";
   render("signup");
 });
 
@@ -75,9 +81,11 @@ signupButton.addEventListener("click", async () => {
 
   const data = await response.json();
   if (response.ok) {
-    console.log(data.message);
+    signupStatus.textContent = data.message;
+    signupStatus.className = "success-message";
   } else {
-    console.log(data.error);
+    signupStatus.textContent = data.error;
+    signupStatus.className = "failure-message";
   }
 });
 
@@ -100,7 +108,8 @@ loginButton.addEventListener("click", async () => {
     localStorage.setItem("token", data.token);
     render("gameMenu");
   } else {
-    console.log(data.connection);
+    loginStatus.textContent = data.connection;
+    loginStatus.className = "failure-message";
   }
 });
 
