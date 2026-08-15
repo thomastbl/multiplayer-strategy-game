@@ -59,20 +59,6 @@ This project is developed self-taught as part of my move toward full-stack devel
 - **jsonwebtoken** — token-based authentication
 - **cors** - cross-origin handling
 
-### Database
-
-- **PostgreSQL**
-
----
-
-The project keeps the **client** and the **server** separate:
-
-- the **client** never communicates directly with the database;
-- it sends its requests to the **API** (Express server);
-- the **server** is the only party that talks to PostgreSQL.
-
----
-
 ### 🎯 MVP
 
 The immediate ambition is a first playable, demonstrable game:
