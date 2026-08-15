@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "dev": "node --watch --env-file=.env server.js"
+    "http-server": "node --watch --env-file=.env server.js",
+    "wss": "node --watch --env-file=.env websocket.js"
   },
   "keywords": [],
   "author": "",
@@ -18,6 +19,7 @@
     "express": "^5.2.1",
     "express-rate-limit": "^8.5.2",
     "jsonwebtoken": "^9.0.3",
-    "pg": "^8.22.0"
+    "pg": "^8.22.0",
+    "ws": "^8.21.3"
   }
 }
