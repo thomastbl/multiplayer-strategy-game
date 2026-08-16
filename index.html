@@ -14,10 +14,10 @@
 
   <body>
     <div class="menu-card" data-view="menu">
-      <button data-go="login">Se connecter</button>
-      <button data-go="signup">S'inscrire</button>
+      <button data-go="login">Log in</button>
+      <button data-go="signup">Sign-up</button>
       <button data-go="gameMenu" id="enter-game-button" hidden>
-        Entrer dans le jeu
+        Enter in game
       </button>
     </div>
     <div class="menu-card" data-view="login" hidden>
@@ -38,11 +38,11 @@
         </svg>
       </button>
       <form action="http://localhost:8080/" method="post">
-        <label for="username_lg">Nom d'utilisateur</label>
+        <label for="username_lg">Username</label>
         <input type="text" name="username" id="username_lg" />
-        <label for="password_lg">Mot de passe</label>
+        <label for="password_lg">Password</label>
         <input type="password" name="password" id="password_lg" />
-        <button type="button" id="login-button">Se connecter</button>
+        <button type="button" id="login-button">Log in</button>
         <p class="" id="login-status"></p>
       </form>
     </div>
@@ -64,11 +64,11 @@
         </svg>
       </button>
       <form action="http://localhost:8080/" method="post">
-        <label for="username_su">Nom d'utilisateur</label>
+        <label for="username_su">Username</label>
         <input type="text" name="username" id="username_su" />
-        <label for="password_su">Mot de passe</label>
+        <label for="password_su">Password</label>
         <input type="password" name="password" id="password_su" />
-        <button type="button" id="signup-button">S'inscrire</button>
+        <button type="button" id="signup-button">Sign-up</button>
         <p class="" id="signup-status"></p>
       </form>
     </div>
@@ -123,15 +123,15 @@
           <div class="lobby-card">
             <table>
               <caption>
-                Serveurs ouverts
+                Lobbies
               </caption>
               <thead>
                 <tr>
-                  <th scope="col">Nom de la partie</th>
-                  <th scope="col">Hôte</th>
-                  <th scope="col">Carte</th>
-                  <th scope="col">Nombre de joueurs</th>
-                  <th scope="col">Statut de la partie</th>
+                  <th scope="col">Lobby's name</th>
+                  <th scope="col">Host</th>
+                  <th scope="col">Map</th>
+                  <th scope="col">Number of players</th>
+                  <th scope="col">Game status</th>
                 </tr>
               </thead>
             </table>
