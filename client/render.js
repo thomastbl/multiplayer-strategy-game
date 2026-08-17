@@ -51,6 +51,30 @@ goGameMenu.addEventListener("click", () => {
   }
 });
 
+// --------- Créer vue
+
+export function displayPlayersList(playerList) {
+  const tbody = document.getElementById("playerListBody");
+  tbody.textContent = "";
+
+  playerList.forEach((player) => {
+    const tr = document.createElement("tr");
+    tbody.appendChild(tr);
+
+    const tdName = document.createElement("td");
+    tdName.textContent = player.name;
+    tr.appendChild(tdName);
+
+    const tdStatus = document.createElement("td");
+    tdStatus.textContent = player.status;
+    tr.appendChild(tdStatus);
+
+    const tdActivity = document.createElement("td");
+    tdActivity.textContent = player.lastseen;
+    tr.appendChild(tdActivity);
+  });
+}
+
 // --------- Events listeners
 
 logout.addEventListener("click", () => {
