@@ -68,12 +68,15 @@ async function login(username, password) {
 
 app.post("/signup", async (req, res) => {
   const { username, password } = req.body;
+  if (username === "" || password === "") {
+    return res.status(422).json({ info: "Invalid username or password" });
+  }
   try {
     await signup(username, password);
-    res.status(200).json({ message: "Successful sign-up" });
+    res.status(200).json({ info: "Successful sign-up" });
   } catch (error) {
     console.error(error);
-    res.status(401).json({ error: "Username already taken" });
+    res.status(401).json({ info: "Username already taken" });
   }
 });
 

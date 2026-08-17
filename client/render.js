@@ -81,10 +81,10 @@ signupButton.addEventListener("click", async () => {
 
   const data = await response.json();
   if (response.ok) {
-    signupStatus.textContent = data.message;
+    signupStatus.textContent = data.info;
     signupStatus.className = "success-message";
   } else {
-    signupStatus.textContent = data.error;
+    signupStatus.textContent = data.info;
     signupStatus.className = "failure-message";
   }
 });
