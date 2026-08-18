@@ -14,6 +14,8 @@ const enterGameButton = document.getElementById("enter-game-button");
 const signupStatus = document.getElementById("signup-status");
 const loginStatus = document.getElementById("login-status");
 
+import { connectWebSocket } from "./wss-client.js";
+
 let currentView = "menu";
 
 export function render(dataview) {
@@ -130,6 +132,7 @@ loginButton.addEventListener("click", async () => {
   if (response.ok) {
     console.log(data.connection);
     localStorage.setItem("token", data.token);
+    connectWebSocket();
     render("gameMenu");
   } else {
     loginStatus.textContent = data.connection;

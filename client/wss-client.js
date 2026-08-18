@@ -1,15 +1,26 @@
 // Connexion au serveur
-const socket = new WebSocket("ws://localhost:8081");
+import { displayPlayersList } from "./render.js";
 
-socket.addEventListener("open", () => {
-  console.log("CLIENT-SIDE : You are connected to the server");
-  socket.send("Hello server, I am the client");
-});
+let socket = null;
 
-socket.addEventListener("message", (event) => {
-  console.log(`CLIENT-SIDE : Message received from the server : ${event.data}`);
-});
+export function connectWebSocket() {
+  const socket = new WebSocket("ws://localhost:8081");
 
-socket.addEventListener("close", () => {
-  console.log("CLIENT-SIDE : Disconnected");
-});
+  socket.addEventListener("open", () => {
+    console.log("CLIENT-SIDE : You are connected to the server");
+    const token = localStorage.getItem("token");
+
+    socket.send(JSON.stringify({ type: "token", token: token }));
+  });
+
+  socket.addEventListener("message", (event) => {
+    const parsedData = JSON.parse(event.data);
+    if (parsedData.type === "connectedPlayers") {
+      displayPlayersList(parsedData.players);
+    }
+  });
+
+  socket.addEventListener("close", () => {
+    console.log("CLIENT-SIDE : Disconnected");
+  });
+}

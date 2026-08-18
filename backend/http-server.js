@@ -61,7 +61,7 @@ async function login(username, password) {
     return { match: false };
   }
   const match = await bcrypt.compare(password, result.rows[0].password_hash);
-  return { match: match, id: result.rows[0].id };
+  return { match: match, id: result.rows[0].id, username: username };
 }
 
 // --------- Routes
@@ -85,9 +85,13 @@ app.post("/login", async (req, res) => {
   try {
     const success = await login(username, password);
     if (success.match) {
-      const token = jwt.sign({ user_id: success.id }, process.env.JWT_KEY, {
-        expiresIn: "12h",
-      });
+      const token = jwt.sign(
+        { username: success.username, user_id: success.id },
+        process.env.JWT_KEY,
+        {
+          expiresIn: "12h",
+        },
+      );
       res
         .status(200)
         .json({ connection: "Connection authorized", token: token });
