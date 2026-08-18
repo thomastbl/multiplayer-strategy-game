@@ -48,18 +48,15 @@ function handleAuthentification(socket, message) {
 
   updatePlayersListForAll(socket);
 }
-console.log("SERVER-SIDE : handleAuthentification(socket, message)");
 
 function handleDisconnection(socket) {
   if (!socket.userID) return;
 
   connectedPlayers.delete(socket.userID);
-
   updatePlayersListForAll(socket);
 }
 
 function updatePlayersListForAll(socket) {
-  console.log("SERVER-SIDE : updatePlayersListForAll(socket)");
   const array = [];
   connectedPlayers.forEach((username, id) => {
     array.push({

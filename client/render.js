@@ -60,7 +60,6 @@ goGameMenu.addEventListener("click", () => {
 export function displayPlayersList(playerList) {
   const tbody = document.getElementById("playerListBody");
   tbody.textContent = "";
-  console.log(playerList);
 
   playerList.forEach((player) => {
     const tr = document.createElement("tr");
