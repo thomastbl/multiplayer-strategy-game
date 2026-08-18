@@ -1,2 +1,2 @@
-import { render } from "./render.js";
+import "./render.js";
 import "./wss-client.js";

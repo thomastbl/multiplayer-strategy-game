@@ -16,27 +16,16 @@ wss.on("connection", (socket) => {
   });
 
   socket.on("message", (data) => {
-    const parsedData = JSON.parse(data);
+    const message = JSON.parse(data);
 
-    if (parsedData.type === "token") {
-      const payload = jwt.verify(parsedData.token, process.env.JWT_KEY);
-
-      connectedPlayers.set(payload.user_id, payload.username);
-
-      const array = [];
-      connectedPlayers.forEach((username, id) => {
-        array.push({
-          name: username,
-          status: "connected",
-          lastseen: "now",
-        });
-      });
-
-      socket.send(JSON.stringify({ type: "connectedPlayers", players: array }));
+    // prettier-ignore
+    switch (message.type) {
+      case "connect":       handleAuthentification(socket, message); break;
     }
   });
 
   socket.on("close", () => {
+    handleDisconnection(socket);
     console.log("SERVER-SIDE : CLIENT DISCONNECTED");
   });
 });
@@ -50,3 +39,43 @@ setInterval(() => {
     socket.ping();
   });
 }, 10000);
+
+function handleAuthentification(socket, message) {
+  const payload = jwt.verify(message.token, process.env.JWT_KEY);
+  socket.userID = payload.user_id;
+
+  connectedPlayers.set(payload.user_id, payload.username);
+
+  updatePlayersListForAll(socket);
+}
+console.log("SERVER-SIDE : handleAuthentification(socket, message)");
+
+function handleDisconnection(socket) {
+  if (!socket.userID) return;
+
+  connectedPlayers.delete(socket.userID);
+
+  updatePlayersListForAll(socket);
+}
+
+function updatePlayersListForAll(socket) {
+  console.log("SERVER-SIDE : updatePlayersListForAll(socket)");
+  const array = [];
+  connectedPlayers.forEach((username, id) => {
+    array.push({
+      name: username,
+      status: "connected",
+      lastseen: "now",
+    });
+  });
+
+  const message = JSON.stringify({
+    type: "connectedPlayers",
+    players: array,
+  });
+  wss.clients.forEach((client) => {
+    if (client.readyState === WebSocket.OPEN) {
+      client.send(message);
+    }
+  });
+}

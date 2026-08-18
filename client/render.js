@@ -15,6 +15,7 @@ const signupStatus = document.getElementById("signup-status");
 const loginStatus = document.getElementById("login-status");
 
 import { connectWebSocket } from "./wss-client.js";
+import { terminateWS } from "./wss-client.js";
 
 let currentView = "menu";
 
@@ -48,6 +49,7 @@ goGameMenu.addEventListener("click", () => {
   const token = localStorage.getItem("token");
   if (token) {
     render("gameMenu");
+    connectWebSocket();
   } else {
     render("login");
   }
@@ -58,6 +60,7 @@ goGameMenu.addEventListener("click", () => {
 export function displayPlayersList(playerList) {
   const tbody = document.getElementById("playerListBody");
   tbody.textContent = "";
+  console.log(playerList);
 
   playerList.forEach((player) => {
     const tr = document.createElement("tr");
@@ -84,12 +87,14 @@ logout.addEventListener("click", () => {
   enterGameButton.hidden = true;
   goLogin.hidden = false;
   goSignup.hidden = false;
+  terminateWS();
 });
 
 backButtonFromGameMenu.addEventListener("click", () => {
   enterGameButton.hidden = false;
   goLogin.hidden = true;
   goSignup.hidden = true;
+  terminateWS();
 });
 
 signupButton.addEventListener("click", async () => {
