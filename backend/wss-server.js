@@ -21,6 +21,7 @@ wss.on("connection", (socket) => {
     // prettier-ignore
     switch (message.type) {
       case "connect":       handleAuthentification(socket, message); break;
+      case "updateLobbies":  updateLobbiesList(socket, message); break;
     }
   });
 

@@ -1,6 +1,7 @@
 const goLogin = document.querySelector(`[data-go="login"]`);
 const goSignup = document.querySelector(`[data-go="signup"]`);
 const goGameMenu = document.querySelector(`[data-go="gameMenu"]`);
+const LobbyCreationCard = document.querySelector(`[data-view="lobbyCreation"]`);
 const goMenu = document.querySelectorAll(`[data-go="menu"]`);
 const signupButton = document.getElementById("signup-button");
 const loginButton = document.getElementById("login-button");
@@ -19,6 +20,7 @@ const lobbyName = document.getElementById("lobby-name");
 const lobbySize = document.getElementById("lobby-size");
 const createLobby = document.getElementById("create-lobby");
 const lobbyForm = document.getElementById("lobby-form");
+const lobbyCardButton = document.getElementById("create-lobby-card");
 
 import { connectWebSocket } from "./wss-client.js";
 import { terminateWS } from "./wss-client.js";
@@ -59,6 +61,10 @@ goGameMenu.addEventListener("click", () => {
   } else {
     render("login");
   }
+});
+
+lobbyCardButton.addEventListener("click", () => {
+  render("lobbyCreation");
 });
 
 // --------- Créer vue
@@ -163,14 +169,13 @@ range.addEventListener("input", () => {
 createLobby.addEventListener("click", async () => {
   const response = await fetch("http://localhost:8080/createLobby", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
     body: JSON.stringify({
       lobbyName: lobbyName.value,
       lobbySize: lobbySize.value,
     }),
   });
-});
-
-lobbyForm.addEventListener("submit", (event) => {
-  event.preventDefault();
 });

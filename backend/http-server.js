@@ -33,6 +33,7 @@ function authenticateToken(req, res, next) {
     const authorization = req.headers.authorization;
     const token = authorization.split(" ")[1];
     const verifiedToken = jwt.verify(token, process.env.JWT_KEY);
+    req.user = verifiedToken;
     console.log("The token has been validated");
     next();
   } catch (error) {
@@ -98,6 +99,22 @@ app.post("/login", async (req, res) => {
     } else {
       res.status(401).json({ connection: "Invalid username or password" });
     }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
+app.post("/createLobby", authenticateToken, async (req, res) => {
+  const { lobbyName, lobbySize } = req.body;
+  const hostId = req.user.user_id;
+
+  try {
+    await pool.query(
+      "INSERT INTO lobbies (host_id, name, max_players) VALUES ($1, $2, $3)",
+      [hostId, lobbyName, lobbySize],
+    );
+    res.status(200).json({ message: "Lobby created" });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Server error" });

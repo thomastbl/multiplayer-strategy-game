@@ -13,7 +13,7 @@
   </head>
 
   <body>
-    <div class="menu-card" data-view="menu" hidden>
+    <div class="menu-card" data-view="menu">
       <button data-go="login">Log in</button>
       <button data-go="signup">Sign-up</button>
       <button data-go="gameMenu" id="enter-game-button" hidden>
@@ -121,7 +121,7 @@
         </div>
         <div class="middle-side">
           <div>
-            <button>Create lobby</button>
+            <button id="create-lobby-card">Create lobby</button>
           </div>
           <div class="lobby-card">
             <table>
@@ -156,7 +156,7 @@
         </div>
       </div>
     </div>
-    <div class="lobbyCreationMenu menu-card" data-view="lobbyCreationMenu">
+    <div class="lobbyCreationMenu menu-card" data-view="lobbyCreation" hidden>
       <button data-go="gameMenu" class="back-button">
         <svg
           xmlns="http://www.w3.org/2000/svg"
