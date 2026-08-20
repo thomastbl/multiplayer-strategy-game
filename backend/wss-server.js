@@ -41,12 +41,19 @@ setInterval(() => {
 }, 10000);
 
 function handleAuthentification(socket, message) {
-  const payload = jwt.verify(message.token, process.env.JWT_KEY);
-  socket.userID = payload.user_id;
+  try {
+    const payload = jwt.verify(message.token, process.env.JWT_KEY);
+    socket.userID = payload.user_id;
 
-  connectedPlayers.set(payload.user_id, payload.username);
+    connectedPlayers.set(payload.user_id, payload.username);
 
-  updatePlayersListForAll(socket);
+    updatePlayersListForAll(socket);
+  } catch (error) {
+    socket.send(
+      JSON.stringify({ type: "authenficationError", error: "Invalid token" }),
+    );
+    socket.close();
+  }
 }
 
 function handleDisconnection(socket) {
