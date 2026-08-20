@@ -13,6 +13,12 @@ const backButtonFromGameMenu = document.getElementById("menu-game-back");
 const enterGameButton = document.getElementById("enter-game-button");
 const signupStatus = document.getElementById("signup-status");
 const loginStatus = document.getElementById("login-status");
+const range = document.getElementById("lobby-size");
+const affichage = document.getElementById("lobby-size-value");
+const lobbyName = document.getElementById("lobby-name");
+const lobbySize = document.getElementById("lobby-size");
+const createLobby = document.getElementById("create-lobby");
+const lobbyForm = document.getElementById("lobby-form");
 
 import { connectWebSocket } from "./wss-client.js";
 import { terminateWS } from "./wss-client.js";
@@ -148,4 +154,23 @@ goMenu.forEach((button) => {
   button.addEventListener("click", () => {
     render("menu");
   });
+});
+
+range.addEventListener("input", () => {
+  affichage.textContent = range.value;
+});
+
+createLobby.addEventListener("click", async () => {
+  const response = await fetch("http://localhost:8080/createLobby", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      lobbyName: lobbyName.value,
+      lobbySize: lobbySize.value,
+    }),
+  });
+});
+
+lobbyForm.addEventListener("submit", (event) => {
+  event.preventDefault();
 });

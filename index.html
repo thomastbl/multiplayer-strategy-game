@@ -13,7 +13,7 @@
   </head>
 
   <body>
-    <div class="menu-card" data-view="menu">
+    <div class="menu-card" data-view="menu" hidden>
       <button data-go="login">Log in</button>
       <button data-go="signup">Sign-up</button>
       <button data-go="gameMenu" id="enter-game-button" hidden>
@@ -120,6 +120,9 @@
           <div class="friends-card padding">FRIENDS LIST</div>
         </div>
         <div class="middle-side">
+          <div>
+            <button>Create lobby</button>
+          </div>
           <div class="lobby-card">
             <table>
               <caption>
@@ -152,6 +155,35 @@
           </div>
         </div>
       </div>
+    </div>
+    <div class="lobbyCreationMenu menu-card" data-view="lobbyCreationMenu">
+      <button data-go="gameMenu" class="back-button">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <line x1="19" y1="12" x2="5" y2="12" />
+          <polyline points="12 19 5 12 12 5" />
+        </svg>
+      </button>
+      <form class="lobby-form">
+        <label for="lobby-name">Lobby's name</label>
+        <input type="text" id="lobby-name" />
+
+        <label for="lobby-size">Maximum number of players :</label>
+        <span id="lobby-size-value">2</span>
+        <input type="range" id="lobby-size" value="2" min="2" max="10" />
+
+        <button type="button" id="create-lobby">Create lobby</button>
+        <p class="" id="create-lobby-status"></p>
+      </form>
     </div>
   </body>
 </html>
