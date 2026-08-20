@@ -104,6 +104,10 @@ app.post("/login", async (req, res) => {
   }
 });
 
+app.post("/verify", authenticateToken, async (req, res) => {
+  res.status(200).json({ valid: true });
+});
+
 // ---------
 
 app.listen(port, () => {
